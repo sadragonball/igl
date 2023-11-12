@@ -61,6 +61,14 @@ class Volume final : public ITexture {
 
   uint32_t getNumVkLayers() const;
 
+ private:
+  Result create(const TextureDesc& desc);
+
+  Result uploadInternal(TextureType type,
+                        const TextureRangeDesc& range,
+                        const void* data,
+                        size_t bytesPerRow = 0) const final;
+
  protected:
   const igl::vulkan::Device& device_;
   TextureDesc desc_;
